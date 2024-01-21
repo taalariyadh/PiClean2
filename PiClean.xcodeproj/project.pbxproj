@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		8792CC212B59540400970D97 /* PiCleanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8792CC202B59540400970D97 /* PiCleanApp.swift */; };
-		8792CC232B59540400970D97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8792CC222B59540400970D97 /* ContentView.swift */; };
 		8792CC252B59540500970D97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8792CC242B59540500970D97 /* Assets.xcassets */; };
 		8792CC282B59540500970D97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8792CC272B59540500970D97 /* Preview Assets.xcassets */; };
+		8792CC302B59545500970D97 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8792CC2F2B59545500970D97 /* CameraView.swift */; };
+		8792CC372B5D512100970D97 /* PiCleanClassifier 1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8792CC362B5D512100970D97 /* PiCleanClassifier 1.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8792CC1D2B59540400970D97 /* PiClean.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiClean.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8792CC202B59540400970D97 /* PiCleanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiCleanApp.swift; sourceTree = "<group>"; };
-		8792CC222B59540400970D97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8792CC242B59540500970D97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8792CC272B59540500970D97 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8792CC2F2B59545500970D97 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		8792CC362B5D512100970D97 /* PiCleanClassifier 1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "PiCleanClassifier 1.mlmodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +54,9 @@
 			isa = PBXGroup;
 			children = (
 				8792CC202B59540400970D97 /* PiCleanApp.swift */,
-				8792CC222B59540400970D97 /* ContentView.swift */,
+				8792CC2E2B59542600970D97 /* View */,
 				8792CC242B59540500970D97 /* Assets.xcassets */,
+				8792CC312B59557600970D97 /* Data */,
 				8792CC262B59540500970D97 /* Preview Content */,
 			);
 			path = PiClean;
@@ -65,6 +68,22 @@
 				8792CC272B59540500970D97 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8792CC2E2B59542600970D97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8792CC2F2B59545500970D97 /* CameraView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8792CC312B59557600970D97 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8792CC362B5D512100970D97 /* PiCleanClassifier 1.mlmodel */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +156,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8792CC232B59540400970D97 /* ContentView.swift in Sources */,
+				8792CC302B59545500970D97 /* CameraView.swift in Sources */,
+				8792CC372B5D512100970D97 /* PiCleanClassifier 1.mlmodel in Sources */,
 				8792CC212B59540400970D97 /* PiCleanApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,8 +292,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PiClean/Preview Content\"";
+				DEVELOPMENT_TEAM = ST876TKNHL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The app Wants to access your Camera ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -300,8 +322,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PiClean/Preview Content\"";
+				DEVELOPMENT_TEAM = ST876TKNHL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The app Wants to access your Camera ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

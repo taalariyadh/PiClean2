@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2927A36D2B5D8F12008848E2 /* splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2927A36C2B5D8F12008848E2 /* splash.swift */; };
+		2927A36F2B5D8FC1008848E2 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2927A36E2B5D8FC1008848E2 /* Color.xcassets */; };
+		2927A3752B5DB546008848E2 /* Mainpage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2927A3742B5DB546008848E2 /* Mainpage.swift */; };
 		8792CC212B59540400970D97 /* PiCleanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8792CC202B59540400970D97 /* PiCleanApp.swift */; };
 		8792CC252B59540500970D97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8792CC242B59540500970D97 /* Assets.xcassets */; };
 		8792CC282B59540500970D97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8792CC272B59540500970D97 /* Preview Assets.xcassets */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2927A36C2B5D8F12008848E2 /* splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splash.swift; sourceTree = "<group>"; };
+		2927A36E2B5D8FC1008848E2 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		2927A3742B5DB546008848E2 /* Mainpage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mainpage.swift; sourceTree = "<group>"; };
 		8792CC1D2B59540400970D97 /* PiClean.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiClean.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8792CC202B59540400970D97 /* PiCleanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiCleanApp.swift; sourceTree = "<group>"; };
 		8792CC242B59540500970D97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,8 +62,11 @@
 				8792CC202B59540400970D97 /* PiCleanApp.swift */,
 				8792CC2E2B59542600970D97 /* View */,
 				8792CC242B59540500970D97 /* Assets.xcassets */,
+				2927A36E2B5D8FC1008848E2 /* Color.xcassets */,
 				8792CC312B59557600970D97 /* Data */,
 				8792CC262B59540500970D97 /* Preview Content */,
+				2927A3742B5DB546008848E2 /* Mainpage.swift */,
+				2927A36C2B5D8F12008848E2 /* splash.swift */,
 			);
 			path = PiClean;
 			sourceTree = "<group>";
@@ -146,6 +155,7 @@
 			files = (
 				8792CC282B59540500970D97 /* Preview Assets.xcassets in Resources */,
 				8792CC252B59540500970D97 /* Assets.xcassets in Resources */,
+				2927A36F2B5D8FC1008848E2 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +168,8 @@
 			files = (
 				8792CC302B59545500970D97 /* CameraView.swift in Sources */,
 				8792CC372B5D512100970D97 /* PiCleanClassifier 1.mlmodel in Sources */,
+				2927A36D2B5D8F12008848E2 /* splash.swift in Sources */,
+				2927A3752B5DB546008848E2 /* Mainpage.swift in Sources */,
 				8792CC212B59540400970D97 /* PiCleanApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -65,14 +65,9 @@
 			children = (
 				8792CC202B59540400970D97 /* PiCleanApp.swift */,
 				8792CC2E2B59542600970D97 /* View */,
-				8792CC242B59540500970D97 /* Assets.xcassets */,
 				2927A36E2B5D8FC1008848E2 /* Color.xcassets */,
 				8792CC312B59557600970D97 /* Data */,
 				8792CC262B59540500970D97 /* Preview Content */,
-				2927A3742B5DB546008848E2 /* Mainpage.swift */,
-				2927A36C2B5D8F12008848E2 /* splash.swift */,
-				133BE6CA2B5FD87A00808AC3 /* Background.swift */,
-				133BE6CC2B5FD98B00808AC3 /* AfterPage.swift */,
 			);
 			path = PiClean;
 			sourceTree = "<group>";
@@ -81,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				8792CC272B59540500970D97 /* Preview Assets.xcassets */,
+				8792CC242B59540500970D97 /* Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -89,6 +85,10 @@
 			isa = PBXGroup;
 			children = (
 				8792CC2F2B59545500970D97 /* CameraView.swift */,
+				2927A3742B5DB546008848E2 /* Mainpage.swift */,
+				133BE6CC2B5FD98B00808AC3 /* AfterPage.swift */,
+				2927A36C2B5D8F12008848E2 /* splash.swift */,
+				133BE6CA2B5FD87A00808AC3 /* Background.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

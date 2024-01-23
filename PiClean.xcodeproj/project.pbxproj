@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		133BE6CB2B5FD87A00808AC3 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133BE6CA2B5FD87A00808AC3 /* Background.swift */; };
+		133BE6CD2B5FD98B00808AC3 /* AfterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133BE6CC2B5FD98B00808AC3 /* AfterPage.swift */; };
 		2927A36D2B5D8F12008848E2 /* splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2927A36C2B5D8F12008848E2 /* splash.swift */; };
 		2927A36F2B5D8FC1008848E2 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2927A36E2B5D8FC1008848E2 /* Color.xcassets */; };
 		2927A3752B5DB546008848E2 /* Mainpage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2927A3742B5DB546008848E2 /* Mainpage.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		133BE6CA2B5FD87A00808AC3 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		133BE6CC2B5FD98B00808AC3 /* AfterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterPage.swift; sourceTree = "<group>"; };
 		2927A36C2B5D8F12008848E2 /* splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splash.swift; sourceTree = "<group>"; };
 		2927A36E2B5D8FC1008848E2 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		2927A3742B5DB546008848E2 /* Mainpage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mainpage.swift; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 				8792CC262B59540500970D97 /* Preview Content */,
 				2927A3742B5DB546008848E2 /* Mainpage.swift */,
 				2927A36C2B5D8F12008848E2 /* splash.swift */,
+				133BE6CA2B5FD87A00808AC3 /* Background.swift */,
+				133BE6CC2B5FD98B00808AC3 /* AfterPage.swift */,
 			);
 			path = PiClean;
 			sourceTree = "<group>";
@@ -169,8 +175,10 @@
 				8792CC302B59545500970D97 /* CameraView.swift in Sources */,
 				8792CC372B5D512100970D97 /* PiCleanClassifier 1.mlmodel in Sources */,
 				2927A36D2B5D8F12008848E2 /* splash.swift in Sources */,
+				133BE6CD2B5FD98B00808AC3 /* AfterPage.swift in Sources */,
 				2927A3752B5DB546008848E2 /* Mainpage.swift in Sources */,
 				8792CC212B59540400970D97 /* PiCleanApp.swift in Sources */,
+				133BE6CB2B5FD87A00808AC3 /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

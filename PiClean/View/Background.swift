@@ -10,7 +10,7 @@ import SwiftUI
 struct Background: View {
     var body: some View {
         ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
+        // Color.black.edgesIgnoringSafeArea(.all)
 
             ImagesView(imageNames: ["Image1", "Image2", "Image3", "Image4","Image5","Image6","Image7","Image8","Image9","Image10","Image11","Image12","Image13","Image15","Image16","Image17","Image16","Image19","Image20","Image21","Image22"])
                         }

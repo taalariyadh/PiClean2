@@ -44,201 +44,210 @@ extension UIImage: Identifiable
 struct CameraView: View {
     
     @State private var showCamera = false
-    @State private var selectedImage: UIImage?
     @State private var showClass = false
     @State private var classificationResult: String?
     @State private var isShowingSheet = false
-    
+    @EnvironmentObject var vm1 : ViewModel
 
     var body: some View {
         GeometryReader { geometry in
             
-            ZStack{
-                
-                Background()
-                
-                VStack (alignment: .center , spacing: 30) {
+            VStack {
+                if  let image1 = vm1.selectedImage {
                     
-                
-                    
-                    Text("Lets Save Our Planet!")
-                        .font(.largeTitle)
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.center)
-                  
-                    
-                   Image("dirtyyplanet")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 250, height: 250)
-                    
-                    
-                    Button(action: {
-                        isShowingSheet.toggle()
-
-
-                    }) {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color("ButtonColor"))
-                                .frame(width:148, height: 44, alignment: .center)
-                                .cornerRadius(12)
-                            
-                                                
-                            Text("Get Started")
-                                .font(.system(size: 24))
-                                .foregroundColor(.white)
-                                .accessibilityLabel("This is a button to get started")
-                        }
-                      
-                        
-                    }  .padding(.top, geometry.size.height * 0.3)
-        
+                    AfterPage()
                 }
-            }
-        
-        .fullScreenCover(isPresented: self.$showCamera ) {
-                accessCameraView(selectedImage: self.$selectedImage)
-                .interactiveDismissDisabled()
-                    .ignoresSafeArea()
-            
-        } // end fullScreenCover
-        
-        
-        .sheet(isPresented: $isShowingSheet) {
-            
-            ZStack{
-                VStack{
-                    Spacer()
-                           .frame(height: 50)
+                else{
                     
-                    Text(" Snap a quick pic to grab your mess, how things are right know before we jumpn into cleaning ")
-                    
-                        .font(.title3)
-                        .fontWeight(.medium)
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.center)
-                    
-                    Spacer()
-                           .frame(height: 50)
-                    
-                    Text(" Lets make a positive impact together")
-                        .font(.title3)
-                        .fontWeight(.medium)
-                        .foregroundColor(Color.textcolor)
-                        .multilineTextAlignment(.center)
-                    
-                    
-                    Button(action: {
-                        self.showCamera.toggle()
-                    }) {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color("ButtonColor"))
-                                .frame(width:155, height: 50, alignment: .center)
-                                .cornerRadius(12)
+                    ZStack{
+                        
+                        Background()
+                        
+                        VStack (alignment: .center , spacing: 30) {
                             
                             
                             
-                            Text("Take a Photo")
-                                .font(.system(size: 24))
-                                .foregroundColor(.white)
-                             
+                            Text("Lets Save Our Planet!")
+                                .font(.largeTitle)
+                                .foregroundColor(Color.white)
+                                .multilineTextAlignment(.center)
                             
-//                                .accessibilityLabel("This is a button to get started")
+                            
+                            Image("dirtyyplanet")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 250, height: 250)
+                            
+                            
+                            Button(action: {
+                                isShowingSheet.toggle()
+                                
+                                
+                            }) {
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .fill(Color("ButtonColor"))
+                                        .frame(width:148, height: 44, alignment: .center)
+                                        .cornerRadius(12)
+                                    
+                                    
+                                    Text("Get Started")
+                                        .font(.system(size: 24))
+                                        .foregroundColor(.white)
+                                        .accessibilityLabel("This is a button to get started")
+                                }
+                                
+                                
+                            }  .padding(.top, geometry.size.height * 0.3)
                             
                         }
-                        
-
-                        
-                    }.padding(.top, 140)
-                }
-                    
-                    .presentationDetents([.medium, .large])
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color("SheetColor"))
-  
-            }
-          
-        }
-        }
-        
-    } // end View
-        
-        
-        struct accessCameraView: UIViewControllerRepresentable {
-            
-            @Binding var selectedImage: UIImage?
-            @Environment(\.presentationMode) var isPresented
-            
-            func makeUIViewController(context: Context) -> UIImagePickerController {
-                let imagePicker = UIImagePickerController()
-                imagePicker.sourceType = .camera
-                imagePicker.allowsEditing = true
-                imagePicker.delegate = context.coordinator
-                return imagePicker
-            }
-            
-            func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-                
-            }
-            
-            func makeCoordinator() -> Coordinator {
-                return Coordinator(picker: self)
-                
-            }
-        } //SwiftUI representation of a UIViewController that uses the camera to capture an image.
-        
-        class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-            var picker: accessCameraView
-            let model: PiCleanClassifier_1
-            var classificationResult: String?
-            
-            init(picker: accessCameraView) {
-                self.picker = picker
-                self.model = PiCleanClassifier_1()
-                
-                super.init()
-            }
-            
-            func processImage(_ image: UIImage) {
-                if let pixelBuffer = image.pixelBuffer() {
-                    do {
-                        let output = try model.prediction(input: PiCleanClassifier_1Input(image: pixelBuffer))
-                        // Access and handle the model's output
-                        self.classificationResult = output.target
-                        
-                        print("Classification result: \( self.classificationResult)")
-                        
-                    } catch {
-                        print("Error: \(error)")
                     }
                     
+                    .fullScreenCover(isPresented: self.$showCamera ) {
+                        accessCameraView(selectedImage: $vm1.selectedImage)
+                            .interactiveDismissDisabled()
+                            .ignoresSafeArea()
+                        
+                    } // end fullScreenCover
+                    
+                    
+                    .sheet(isPresented: $isShowingSheet) {
+                        
+                        ZStack{
+                            VStack{
+                                Spacer()
+                                    .frame(height: 50)
+                                
+                                Text(" Snap a quick pic to grab your mess, how things are right know before we jumpn into cleaning ")
+                                
+                                    .font(.title3)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color.white)
+                                    .multilineTextAlignment(.center)
+                                
+                                Spacer()
+                                    .frame(height: 50)
+                                
+                                Text(" Lets make a positive impact together")
+                                    .font(.title3)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color.textcolor)
+                                    .multilineTextAlignment(.center)
+                                
+                                
+                                Button(action: {
+                                    self.showCamera.toggle()
+                                }) {
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .fill(Color("ButtonColor"))
+                                            .frame(width:155, height: 50, alignment: .center)
+                                            .cornerRadius(12)
+                                        
+                                        
+                                        
+                                        Text("Take a Photo")
+                                            .font(.system(size: 24))
+                                            .foregroundColor(.white)
+                                        
+                                        .accessibilityLabel("Take a Photo button")
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                }.padding(.top, 140)
+                            }
+                            
+                            .presentationDetents([.medium, .large])
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color("SheetColor"))
+                            
+                        }
+                        
+                    }
                 }
-                
             }
             
-            func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-                guard let selectedImage = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {
-                    return
-                }
-                self.picker.selectedImage = selectedImage
-                processImage(selectedImage)
-                
-                //selectedImage variable represents the image selected or captured by the user using the camera
-                
-                self.picker.isPresented.wrappedValue.dismiss()
-            } // This function gets called when the user has selected or taken a photo using the camera
-            
+        } // end View
+        
+    }
+
+}
+    struct accessCameraView: UIViewControllerRepresentable {
+        
+        @Binding var selectedImage: UIImage?
+        @Environment(\.presentationMode) var isPresented
+        
+        func makeUIViewController(context: Context) -> UIImagePickerController {
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = true
+            imagePicker.delegate = context.coordinator
+            return imagePicker
+        }
+        
+        func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
             
         }
         
+        func makeCoordinator() -> Coordinator {
+            return Coordinator(picker: self)
+            
+        }
+    } //SwiftUI representation of a UIViewController that uses the camera to capture an image.
     
-}
-
+class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    var picker: accessCameraView
+    let model: PiCleanClassifier_1
+    var classificationResult: String?
+    
+    init(picker: accessCameraView) {
+        self.picker = picker
+        self.model = PiCleanClassifier_1()
+        
+        super.init()
+    }
+    
+    func processImage(_ image: UIImage) {
+        if let pixelBuffer = image.pixelBuffer() {
+            do {
+                let output = try model.prediction(input: PiCleanClassifier_1Input(image: pixelBuffer))
+                // Access and handle the model's output
+                self.classificationResult = output.target
+                
+                print("Classification result: \( self.classificationResult)")
+                
+            } catch {
+                print("Error: \(error)")
+            }
+            
+        }
+        
+    }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {
+            return
+        }
+        self.picker.selectedImage = selectedImage
+        processImage(selectedImage)
+        
+        //selectedImage variable represents the image selected or captured by the user using the camera
+        
+        self.picker.isPresented.wrappedValue.dismiss()
+    } // This function gets called when the user has selected or taken a photo using the camera
+    
+    
+    
+    
+    
+    
+} 
     #Preview {
        CameraView()
-            .environment(\.locale, .init(identifier:"ar"))
+            .environment(\.locale, .init(identifier:"PiClean"))
         
     }
 

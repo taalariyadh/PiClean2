@@ -1,16 +1,8 @@
-//
-//  splash.swift
-//  PiClean
-//
-//  Created by shaden alangari on 09/07/1445 AH.
-//
-
 import SwiftUI
 
 struct splash: View {
     var body: some View {
        
-    
             ZStack {
                 Color.black
                     .ignoresSafeArea()
@@ -23,37 +15,33 @@ struct splash: View {
                     
                     
                     PageView()
-                    
-                   
-                
-                    
+                  
                 }
-               
-                
             
         }.foregroundColor(.white) .multilineTextAlignment(.center)
         }
     }
 struct Splash1: View {
-    var body: some View {
-        VStack(spacing: 40) {
-            Text("Think green, keep it clean!")
-                .font(.system(size: 30))
-            
-            Text("Help us make this earth squeaky clean by showing off your cleaning skills!")
-                .font(.system(size: 19))
-                .foregroundColor(.gray)
+   
+        var body: some View {
+            VStack(spacing: 40) {
+                Text("Think green, keep it clean!")
+                    .font(.system(size: 30))
+                
+                Text("Help us make this earth squeaky clean by showing off your cleaning skills!")
+                    .font(.system(size: 19))
+                    .foregroundColor(.gray)
+            }
+            .foregroundColor(.white)
+            .multilineTextAlignment(.center)
         }
-        .foregroundColor(.white)
-        .multilineTextAlignment(.center)
     }
-}
 
 
 struct Splash2: View {
+    @State private var showPage = false
     var body: some View {
-        
-            VStack{
+
                 VStack(spacing: 20) {
                     Text("How it works")
                         .font(.system(size: 30))
@@ -66,22 +54,30 @@ struct Splash2: View {
                 """).lineSpacing(10)
                         .font(.system(size: 20))
                         .foregroundColor(.gray)
+
                     
-                    
-                    
-                    
+                    Button(action: {
+                        self.showPage.toggle()
+                    }){
+                        Text("continue").padding(15)
+                        .foregroundColor(.white)
+                    }
+                    .fullScreenCover(isPresented: $showPage) {
+                        CameraView()
+             
                 }
-        
+
+                }
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .edgesIgnoringSafeArea(.all) // Fill the entire screen
+                    .frame(maxWidth: .infinity, maxHeight: .infinity) // Fill the entire screen.navigationBarHidden(true)
                 
-               
-                
-            }
+            .background(Color(.black))
             
-    }
+        }
        
-}
-
-
+            }
 
 struct PageView: View {
     var splashes: [AnyView] = [AnyView(Splash1()), AnyView(Splash2())]
@@ -104,4 +100,3 @@ struct PageView: View {
 #Preview {
     splash()
 }
-

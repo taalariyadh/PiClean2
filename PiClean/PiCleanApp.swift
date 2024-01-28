@@ -9,10 +9,16 @@ import SwiftUI
 
 @main
 struct PiCleanApp: App {
+    @StateObject var vm = ViewModel()
+
     var body: some Scene {
         WindowGroup {
-            CameraView()
-            //ContentView()
+       
+            splash()
+                .environmentObject(vm)
+                .preferredColorScheme(.dark)
+
+            
         }
     }
 }

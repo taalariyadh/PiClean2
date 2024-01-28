@@ -5,11 +5,12 @@ import Vision
 
 struct AfterPage: View {
     @State private var showCamera = false
-    @State private var selectedImage2: UIImage?
+   // @State private var selectedImage2: UIImage?
     @State private var showClass = false
     @State private var classificationResult: String?
-    @EnvironmentObject var vm2 : ViewModel
+    @EnvironmentObject var vm : ViewModel
     @Environment(\.presentationMode) var presentationMode
+
 
     var body: some View {
         
@@ -21,14 +22,13 @@ struct AfterPage: View {
                 
                // VStack {
                     
-                   if  let image2 = vm2.selectedImage2{
+                   if  let image2 = vm.selectedImage2{
                         
                         BandF()
                     }
                     else{
-                        
                         VStack(alignment: .center) {
-                          //  Spacer()
+            
                 Text("This spot is an absolute mess!")
                                 .font(Font.custom("SF Pro", size: 32))
                                 .foregroundColor(.white)
@@ -68,7 +68,7 @@ struct AfterPage: View {
             }// end geo
             
             .fullScreenCover(isPresented: self.$showCamera ) {
-                accessCameraView(selectedImage: $vm2.selectedImage2)
+                accessCameraView(selectedImage2: $vm.selectedImage2, vm: vm)
                     .interactiveDismissDisabled()
                     .ignoresSafeArea()
                 
@@ -78,8 +78,13 @@ struct AfterPage: View {
     
         struct accessCameraView: UIViewControllerRepresentable {
             
-            @Binding var selectedImage: UIImage?
+            @Binding var selectedImage2: UIImage?
             @Environment(\.presentationMode) var isPresented
+            var vm: ViewModel
+            init(selectedImage2: Binding<UIImage?>, vm: ViewModel) {
+                  self._selectedImage2 = selectedImage2
+                  self.vm = vm
+              }
             
             func makeUIViewController(context: Context) -> UIImagePickerController {
                 let imagePicker = UIImagePickerController()
@@ -94,7 +99,7 @@ struct AfterPage: View {
             }
             
             func makeCoordinator() -> Coordinator {
-                return Coordinator(picker: self)
+                return Coordinator(picker: self, vm: vm)
                 
             }
         } //SwiftUI representation of a UIViewController that uses the camera to capture an image.
@@ -102,11 +107,13 @@ struct AfterPage: View {
         class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
             var picker: accessCameraView
             let model: PiCleanClassifier_1
-            var classificationResult: String?
+            var vm: ViewModel
+
             
-            init(picker: accessCameraView) {
+            init(picker: accessCameraView , vm: ViewModel) {
                 self.picker = picker
                 self.model = PiCleanClassifier_1()
+                self.vm = vm
                 super.init()
             }
             
@@ -115,9 +122,8 @@ struct AfterPage: View {
                     do {
                         let output = try model.prediction(input: PiCleanClassifier_1Input(image: pixelBuffer))
                         // Access and handle the model's output
-                        self.classificationResult = output.target
-                        
-                        print("Classification result: \( self.classificationResult)")
+                        self.vm.classificationResult2 = output.target
+                        print("Classification result: \(self.vm.classificationResult2)")
                         
                     } catch {
                         print("Error: \(error)")
@@ -128,11 +134,11 @@ struct AfterPage: View {
             }
             
             func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-                guard let selectedImage = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {
+                guard let selectedImage2 = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {
                     return
                 }
-                self.picker.selectedImage = selectedImage
-                processImage(selectedImage)
+                self.picker.selectedImage2 = selectedImage2
+                processImage(selectedImage2)
                 
                 //selectedImage variable represents the image selected or captured by the user using the camera
                 
@@ -147,5 +153,6 @@ struct AfterPage: View {
     AfterPage()
         .environment(\.locale, .init(identifier:"PiClean"))
         .environmentObject(ViewModel())
+    
 
 }

@@ -1,11 +1,8 @@
 import SwiftUI
 
 struct BandF: View {
-    @EnvironmentObject var vm1 : ViewModel
-    @EnvironmentObject var vm2 : ViewModel
-    @State private var selectedImage: UIImage?
+    @EnvironmentObject var vm : ViewModel
     @Environment(\.presentationMode) var presentationMode
-    @State private var showView = false
 
     var body: some View {
         GeometryReader{ geometry in
@@ -31,7 +28,7 @@ struct BandF: View {
                     
                     HStack{
                         
-                        if let image1 = vm1.selectedImage{
+                        if let image1 = vm.selectedImage1{
                             Image(uiImage: image1)
                                 .resizable()
                                 .foregroundColor(.clear)
@@ -40,7 +37,7 @@ struct BandF: View {
                         }
                         
                         
-                        if let image2 = vm2.selectedImage2{
+                        if let image2 = vm.selectedImage2{
                             Image(uiImage: image2)
                                 .resizable()
                                 .foregroundColor(.clear)
@@ -57,8 +54,24 @@ struct BandF: View {
                     
             
                 Button(action: {
-                    //self.showView.toggle()
-                    vm2.selectedImage = nil
+                    vm.selectedImage1 = nil
+                    vm.selectedImage2 = nil
+                    if let result = vm.classificationResult2 {
+                     
+                            switch result {
+                            case "Clean":
+                                self.vm.isShowingCleanAlert?.toggle()
+                                print("Clean")
+                            case "UnClean":
+                                self.vm.isShowingUnCleanAlert?.toggle()
+                                print("UnClean")
+                            default:
+                                BandF()
+                                print("Default")
+                            }
+                        
+                       }
+                    
                     }) {
                         
                         ZStack{
@@ -75,19 +88,19 @@ struct BandF: View {
                         }
                         
                     } .padding(.top, geometry.size.height * 0.6)
-             
+                   
+                    
                 }
+            
    
             }
         
-//        .fullScreenCover(isPresented: $showView) {
-//            CameraView()
-//        }
+        }
     }
-    }
-
 
 #Preview {
     BandF()
+        .environmentObject(ViewModel())
+
   
 }

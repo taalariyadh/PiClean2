@@ -45,32 +45,30 @@ struct CameraView: View {
     
     @State private var showCamera = false
     @State private var showClass = false
-    @State private var classificationResult: String?
     @State private var isShowingSheet = false
-    @EnvironmentObject var vm1 : ViewModel
+    @EnvironmentObject var vm : ViewModel
 
     var body: some View {
         GeometryReader { geometry in
             
             VStack {
-                if  let image1 = vm1.selectedImage {
-                    
+                if let image1 = vm.selectedImage1 {
                     AfterPage()
                 }
                 else{
-                    
+                  
                     ZStack{
                         
                         Background()
                         
+                           
                         VStack (alignment: .center , spacing: 30) {
-                            
-                            
-                            
+
                             Text("Lets Save Our Planet!")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.white)
                                 .multilineTextAlignment(.center)
+                            
                             
                             
                             Image("dirtyyplanet")
@@ -99,14 +97,17 @@ struct CameraView: View {
                                 
                                 
                             }  .padding(.top, geometry.size.height * 0.3)
-                            
+              
                         }
+                        
                     }
                     
+                    
                     .fullScreenCover(isPresented: self.$showCamera ) {
-                        accessCameraView(selectedImage: $vm1.selectedImage)
+                        accessCameraView(selectedImage1: $vm.selectedImage1)
                             .interactiveDismissDisabled()
                             .ignoresSafeArea()
+                          
                         
                     } // end fullScreenCover
                     
@@ -133,6 +134,7 @@ struct CameraView: View {
                                     .fontWeight(.medium)
                                     .foregroundColor(Color.textcolor)
                                     .multilineTextAlignment(.center)
+                                  
                                 
                                 
                                 Button(action: {
@@ -166,17 +168,25 @@ struct CameraView: View {
                         }
                         
                     }
-                }
+                    
+                    
+                   
+          }
+                
+                
             }
             
-        } // end View
+            
+        }
         
+
     }
+    
 
 }
     struct accessCameraView: UIViewControllerRepresentable {
         
-        @Binding var selectedImage: UIImage?
+        @Binding var selectedImage1: UIImage?
         @Environment(\.presentationMode) var isPresented
         
         func makeUIViewController(context: Context) -> UIImagePickerController {
@@ -200,7 +210,7 @@ struct CameraView: View {
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     var picker: accessCameraView
     let model: PiCleanClassifier_1
-    var classificationResult: String?
+    var classificationResult1: String?
     
     init(picker: accessCameraView) {
         self.picker = picker
@@ -214,9 +224,9 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             do {
                 let output = try model.prediction(input: PiCleanClassifier_1Input(image: pixelBuffer))
                 // Access and handle the model's output
-                self.classificationResult = output.target
+                self.classificationResult1 = output.target
                 
-                print("Classification result: \( self.classificationResult)")
+                print("Classification result: \( self.classificationResult1)")
                 
             } catch {
                 print("Error: \(error)")
@@ -228,11 +238,11 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let selectedImage = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {
+        guard let selectedImage1 = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage else {
             return
         }
-        self.picker.selectedImage = selectedImage
-        processImage(selectedImage)
+        self.picker.selectedImage1 = selectedImage1
+        processImage(selectedImage1)
         
         //selectedImage variable represents the image selected or captured by the user using the camera
         
@@ -248,6 +258,8 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     #Preview {
        CameraView()
             .environment(\.locale, .init(identifier:"PiClean"))
+            .environmentObject(ViewModel())
+
         
     }
 
